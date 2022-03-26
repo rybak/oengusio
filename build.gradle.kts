@@ -99,6 +99,8 @@ dependencies {
 
     // security and shit
     implementation("org.apache.logging.log4j:log4j-to-slf4j:2.17.1")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 val wrapper: Wrapper by tasks
@@ -107,6 +109,10 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     options.isIncremental = true
     options.compilerArgs = listOf("-Xlint:deprecation", "-Xlint:unchecked")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 wrapper.apply {
